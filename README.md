@@ -12,8 +12,8 @@
 
     cd /opt
     git clone https://github.com/philyuchkoff/HAProxy-2-RPM-builder.git
-    cd ./rpm-haproxy
-    git checkout 1.9
+    cd ./HAProxy-2-RPM-builder
+    git checkout 2.0
 
 ## Установите
     make
