@@ -18,6 +18,7 @@
 ## Установите
     make
     
-Собранный RPM будет лежать в /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64
+Собранный RPM будет лежать в 
+    /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64
 
 ## С удовольствием приму все замечания
