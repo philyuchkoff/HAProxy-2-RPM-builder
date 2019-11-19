@@ -19,6 +19,14 @@
     make
     
 Собранный RPM будет лежать в 
+
     /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64
+    
+## Проверка
+
+После установки пакета можно проверить:
+
+    haproxy -v
+    HA-Proxy version 2.0.9 2019/11/15 - https://haproxy.org/
 
 ## С удовольствием приму все замечания
