@@ -8,14 +8,11 @@
 
     sudo yum groupinstall 'Development Tools'
 
-## Склонируйте себе репозиторий
-
     cd /opt
     git clone https://github.com/philyuchkoff/HAProxy-2-RPM-builder.git
     cd ./HAProxy-2-RPM-builder
     git checkout master
 
-## Установите
     make
     
 Собранный RPM будет лежать в 
