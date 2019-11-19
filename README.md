@@ -11,7 +11,7 @@
 ## Склонируйте себе репозиторий
 
     cd /opt
-    git clone https://github.com/philyuchkoff/haproxy-1.9-RPM-builder.git
+    git clone https://github.com/philyuchkoff/HAProxy-2-RPM-builder.git
     cd ./rpm-haproxy
     git checkout 1.9
 
