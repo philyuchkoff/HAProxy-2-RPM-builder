@@ -2,13 +2,8 @@
 %define haproxy_group   %{haproxy_user}
 %define haproxy_home    %{_localstatedir}/lib/haproxy
 
-%if 0%{?rhel} == 6 && 0%{!?amzn1}
-    %define dist .el6
-%endif
-
-%if 0%{?rhel} == 7 && 0%{!?amzn2}
-    # CentOS 7 forces ".el7.centos", wtf CentOS maintainers...
-    %define dist .el7
+%if 0%{?rhel} > 6 && 0%{!?amzn2}
+    %define dist %{expand:%%(/usr/lib/rpm/redhat/dist.sh --dist)}
 %endif
 
 %if 0%{?rhel} < 7
@@ -22,10 +17,12 @@ Release: %{release}%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.haproxy.org/
-Source0: http://www.haproxy.org/download/2.0/src/%{name}-%{version}.tar.gz
+Source0: http://www.haproxy.org/download/%{mainversion}/src/%{name}-%{version}.tar.gz
 Source1: %{name}.cfg
 %if 0%{?el6} || 0%{?amzn1}
 Source2: %{name}.init
+%else
+Source2: %{name}.service
 %endif
 %{?el7:Source2: %{name}.service}
 Source3: %{name}.logrotate
@@ -96,7 +93,11 @@ USE_TFO=1
 USE_NS=1
 %endif
 
-%{__make} -j$RPM_BUILD_NCPUS %{?_smp_mflags} CPU="generic" TARGET="linux-glibc" ${systemd_opts} ${pcre_opts} USE_OPENSSL=1 USE_ZLIB=1 ${regparm_opts} ADDINC="%{optflags}" USE_LINUX_TPROXY=1 USE_THREAD=1 USE_TFO=${USE_TFO} USE_NS=${USE_NS} ADDLIB="%{__global_ldflags}"
+%if 0%{_use_lua}
+USE_LUA="USE_LUA=1"
+%endif
+
+%{__make} -j$RPM_BUILD_NCPUS %{?_smp_mflags} ${USE_LUA} CPU="generic" TARGET="linux-glibc" ${systemd_opts} ${pcre_opts} USE_OPENSSL=1 USE_ZLIB=1 ${regparm_opts} ADDINC="%{optflags}" USE_LINUX_TPROXY=1 USE_THREAD=1 USE_TFO=${USE_TFO} USE_NS=${USE_NS} ADDLIB="%{__global_ldflags}"
 
 %install
 [ "%{buildroot}" != "/" ] && %{__rm} -rf %{buildroot}
