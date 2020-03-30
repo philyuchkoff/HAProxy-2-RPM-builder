@@ -10,11 +10,13 @@
     %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro}
 %endif
 
-Summary: HA-Proxy is a TCP/HTTP reverse proxy for high availability environments
+%global _hardened_build 1
+
+Summary: HA-Proxy reverse proxy for high availability environments
 Name: haproxy
 Version: %{version}
 Release: %{release}%{?dist}
-License: GPL
+License: GPLv2+
 Group: System Environment/Daemons
 URL: http://www.haproxy.org/
 Source0: http://www.haproxy.org/download/%{mainversion}/src/%{name}-%{version}.tar.gz
@@ -24,11 +26,16 @@ Source2: %{name}.init
 %else
 Source2: %{name}.service
 %endif
-%{?el7:Source2: %{name}.service}
 Source3: %{name}.logrotate
 Source4: %{name}.syslog%{?dist}
+Source5: halog.1
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-BuildRequires: pcre-devel make gcc openssl-devel
+
+BuildRequires: pcre-devel
+BuildRequires: zlib-devel
+BuildRequires: make
+BuildRequires: gcc openssl-devel
+BuildRequires: openssl-devel
 
 Requires(pre):      shadow-utils
 Requires:           rsyslog
@@ -39,8 +46,9 @@ Requires(preun):    chkconfig, initscripts
 Requires(postun):   initscripts
 %endif
 
-%if 0%{?el7} || 0%{?amzn2}
-BuildRequires:      systemd-units systemd-devel
+%if 0%{?el7} || 0%{?amzn2} || 0%{?el8}
+BuildRequires:      systemd-units
+BuildRequires:      systemd-devel
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
