@@ -5,16 +5,19 @@
 ## Установка:
 
     sudo yum groupinstall 'Development Tools'
-
     cd /opt
-    git clone https://github.com/philyuchkoff/HAProxy-2-RPM-builder.git
+    sudo git clone https://github.com/philyuchkoff/HAProxy-2-RPM-builder.git
     cd ./HAProxy-2-RPM-builder
-    git checkout master
-    make
+    sudo git checkout master
+    sudo make
     
-Собранный RPM будет лежать в 
+Собранный RPM (--------) будет лежать в 
 
-    /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/
+    /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.1.8-1.el7.x86_64.rpm
+
+### Установить пакет
+
+    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.1.8-1.el7.x86_64.rpm
     
 ## Проверка
 
@@ -22,9 +25,7 @@
 
     haproxy -v
 
-    HA-Proxy version 2.1.3 2020/02/12 - https://haproxy.org/
-    Status: stable branch - will stop receiving fixes around Q1 2021.
-    Known bugs: http://www.haproxy.org/bugs/bugs-2.1.3.html
+    HA-Proxy version 2.1.8 2020/07/31
     
 ## Если что-то не работает
 То первым делом проверьте
