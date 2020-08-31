@@ -12,7 +12,7 @@
     sudo git checkout master
     sudo make
     
-Собранный RPM (--------) будет лежать в 
+Собранный RPM будет лежать в 
 
     /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.1.8-1.el7.x86_64.rpm
 
