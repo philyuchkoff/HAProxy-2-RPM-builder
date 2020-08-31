@@ -1,4 +1,5 @@
 # Сборка RPM HAProxy самой свежей версии из ветки 2.1 (для CentOS 7)
+### :new: Latest HAProxy 2.2 rpm for CentOS 7 here: https://github.com/philyuchkoff/HAProxy-2-RPM-builder/releases/tag/2.2
 
 Для сборки пакета выполните следующие действия под обычным пользователем:
 
@@ -27,7 +28,7 @@
 
     HA-Proxy version 2.1.8 2020/07/31
     
-## Если что-то не работает
+## :exclamation: Если что-то не работает
 То первым делом проверьте
 
     sestatus
