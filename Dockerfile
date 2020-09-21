@@ -1,5 +1,5 @@
 FROM centos:7
-
+WORKDIR /tmp
 RUN yum install -y wget pcre-devel make gcc openssl-devel rpm-build systemd-devel wget sed zlib-devel && \
 mkdir RPMS && \
 chmod -R 777 RPMS && \
