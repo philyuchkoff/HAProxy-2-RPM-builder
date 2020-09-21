@@ -65,7 +65,7 @@ Check SELINUX:
 
     sestatus
 
-If SELINUX is enabled enabled - swith off this: open /etc/selinux/config and change to SELINUX в disabled
+If SELINUX is enabled  - swith off this: open /etc/selinux/config and change to SELINUX в disabled
 
 
 ## С удовольствием приму все замечания
