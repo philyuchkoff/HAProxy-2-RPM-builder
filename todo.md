@@ -1,0 +1,3 @@
+- check all vars
+- optimize docker layers
+- CI for build rpm
