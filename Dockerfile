@@ -1,4 +1,3 @@
-!!! Need to optimize layers!!!
 FROM centos:7
 
 RUN yum install -y wget pcre-devel make gcc openssl-devel rpm-build systemd-devel wget sed zlib-devel
