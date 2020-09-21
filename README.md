@@ -1,6 +1,4 @@
-# RPM builder for latest HAProxy 2.1 (CentOS 7) with default syslog
-
-### :new: Latest HAProxy 2.2 rpm for CentOS 7 here: https://github.com/philyuchkoff/HAProxy-2-RPM-builder/releases/tag/2.2
+# RPM builder for latest HAProxy 2.2 (CentOS 7) with default syslog
 
 Perform the following steps on a build box as a regular user:
 
@@ -34,7 +32,7 @@ Perform the following steps on a build box as a regular user:
 
 Resulting RPM will be stored in 
 
-    /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.1.8-1.el7.x86_64.rpm
+    /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/
 
 ## Build using Docker:
 
@@ -42,7 +40,7 @@ Resulting RPM will be stored in
 
 Resulting RPM will be stored in 
 
-    `./RPMS/`
+    /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/
 
 
 ### Install RPM:
