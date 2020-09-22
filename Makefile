@@ -1,5 +1,5 @@
 HOME=$(shell pwd)
-MAINVERSION=2.1
+MAINVERSION=2.2
 LUA_VERSION=5.3.5
 USE_LUA?=0
 NO_SUDO?=0
@@ -47,7 +47,6 @@ build-docker:
 
 run-docker: build-docker
 	mkdir -p RPMS
-	chcon -Rt svirt_sandbox_file_t RPMS
 	docker run --volume $(HOME)/RPMS:/RPMS --rm haproxy-rpm-builder:latest
 
 build: $(build_stages)

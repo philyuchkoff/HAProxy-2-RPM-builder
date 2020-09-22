@@ -119,7 +119,6 @@ pushd contrib/iprange
 popd
 
 %install
-mkdir -p /var/lib/haproxy/
 [ "%{buildroot}" != "/" ] && %{__rm} -rf %{buildroot}
 
 %{__install} -d %{buildroot}%{_sbindir}

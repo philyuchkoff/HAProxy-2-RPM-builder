@@ -40,7 +40,7 @@ Resulting RPM will be stored in
 
 Resulting RPM will be stored in 
 
-    /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/
+    ./RPMS/
 
 
 ### Install RPM:
@@ -66,4 +66,4 @@ Check SELINUX:
 If SELINUX is enabled  - switch off this: open /etc/selinux/config and change to SELINUX в disabled
 
 ## Stats page
-You can access a stats page **without** authenticating via the URL: `http://<YourHAProxyServer>:9000/haproxy_stats`
+After install you can access a stats page **without** authenticating via the URL: `http://<YourHAProxyServer>:9000/haproxy_stats`
