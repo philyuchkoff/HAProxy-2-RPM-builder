@@ -70,6 +70,8 @@ It needs very little resource. Its event-driven architecture allows it to easily
 handle thousands of simultaneous connections on hundreds of instances without
 risking the system's stability.
 
+https://github.com/philyuchkoff/HAProxy-2-RPM-builder
+
 %prep
 %setup -q
 

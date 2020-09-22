@@ -45,7 +45,7 @@ Resulting RPM will be stored in
 
 ### Install RPM:
 
-    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.1.8-1.el7.x86_64.rpm
+    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.2.3-1.el7.x86_64.rpm
     
 
 ## Check after install:
@@ -54,7 +54,7 @@ Resulting RPM will be stored in
 
 Must be like this:
 
-    HA-Proxy version 2.1.8 2020/07/31
+    HA-Proxy version 2.2.3
     
 
 ## :exclamation: If some not working:
@@ -66,4 +66,5 @@ Check SELINUX:
 If SELINUX is enabled  - switch off this: open /etc/selinux/config and change to SELINUX в disabled
 
 ## Stats page
+
 After install you can access a stats page **without** authenticating via the URL: `http://<YourHAProxyServer>:9000/haproxy_stats`
