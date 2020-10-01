@@ -1,5 +1,7 @@
 # RPM builder for latest HAProxy 2.2 (CentOS 7) with default syslog
 
+:white_check_mark: [Latest 2.2.4 2020/09/30](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/releases/tag/2.2.4)
+
 Perform the following steps on a build box as a regular user:
 
 ## Install Prerequisites:
