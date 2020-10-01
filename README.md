@@ -56,7 +56,7 @@ Resulting RPM will be stored in
 
 Must be like this:
 
-    HA-Proxy version 2.2.3
+    HA-Proxy version 2.2.4
     
 
 ## :exclamation: If some not working:
