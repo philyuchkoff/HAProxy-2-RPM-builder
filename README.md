@@ -69,8 +69,8 @@ Check SELINUX:
 
     sestatus
 
-If SELINUX is enabled  - switch off this: open /etc/selinux/config and change to SELINUX в disabled
+If SELINUX is enabled  - switch off this: open /etc/selinux/config and change SELINUX to disabled
 
 ## Stats page
 
-After install you can access a stats page **without** authenticating via the URL: `http://<YourHAProxyServer>:9000/haproxy_stats`
+After installation you can access a stats page **without** authenticating via the URL: `http://<YourHAProxyServer>:9000/haproxy_stats`
