@@ -1,4 +1,4 @@
-# RPM builder for latest HAProxy 2.2 (CentOS 7) with default syslog
+# RPM builder for latest HAProxy 2.3 (CentOS 7) with default syslog
 
 :white_check_mark: [Latest 2.2.4 2020/09/30](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/releases/tag/2.2.4)
 
@@ -47,7 +47,11 @@ Resulting RPM will be stored in
 
 ### Install RPM:
 
-    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.2.3-1.el7.x86_64.rpm
+    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.3.0-1.el7.x86_64.rpm
+
+or, if you build *.rpm with Docker:
+
+    sudo yum -y install RPMS/haproxy-2.3.0-1.el7.x86_64.rpm 
     
 
 ## Check after install:
@@ -56,7 +60,7 @@ Resulting RPM will be stored in
 
 Must be like this:
 
-    HA-Proxy version 2.2.4
+    HA-Proxy version 2.3.0-1c0a722 2020/11/05
     
 
 ## :exclamation: If some not working:
