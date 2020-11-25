@@ -7,7 +7,7 @@
 
 ## Install Prerequisites:
 
-    sudo yum groupinstall 'Development Tools'
+    sudo yum -y groupinstall 'Development Tools'
 
 ## Checkout this repository
     cd /opt
