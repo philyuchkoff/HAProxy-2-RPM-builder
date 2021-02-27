@@ -3,7 +3,10 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/philyuchkoff/HAProxy-2-RPM-builder?style=for-the-badge)
 ![GitHub All Releases](https://img.shields.io/github/downloads/philyuchkoff/HAProxy-2-RPM-builder/total?style=for-the-badge)
 
-**Perform the following steps on a build box as a regular user:**
+
+## [HAProxy](http://www.haproxy.org/)
+
+Perform the following steps on a build box as a regular user:
 
 ## Install Prerequisites:
 
