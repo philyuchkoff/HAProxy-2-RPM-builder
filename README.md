@@ -8,15 +8,11 @@
 
 Perform the following steps on a build box as a regular user:
 
-## Install Prerequisites:
 
     sudo yum -y groupinstall 'Development Tools'
-
-## Checkout this repository
     cd /opt
     sudo git clone https://github.com/philyuchkoff/HAProxy-2-RPM-builder.git
     cd ./HAProxy-2-RPM-builder
-    sudo git checkout master
 
 ## Build:
 
