@@ -3,3 +3,4 @@ rpmbuild
 RPMS
 .docker
 *DS_Store
+*.rpm
