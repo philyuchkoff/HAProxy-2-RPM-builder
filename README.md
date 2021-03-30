@@ -69,7 +69,9 @@ Check SELINUX:
 
     sestatus
 
-If SELINUX is enabled  - switch off this: open /etc/selinux/config and change SELINUX to disabled
+If SELINUX is enabled  - switch off this: open /etc/selinux/config and change SELINUX to disabled:
+
+    sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
 
 ## Stats page
 
