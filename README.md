@@ -36,7 +36,7 @@ Resulting RPM will be stored in
 
     /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/
 
-### Build using Docker:
+#### Build using Docker:
 
     sudo make run-docker
 
@@ -45,7 +45,7 @@ Resulting RPM will be stored in
     ./RPMS/
 
 
-#### Install RPM:
+### Install:
 
     sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.3.7-1.el7.x86_64.rpm
 
