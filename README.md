@@ -76,3 +76,12 @@ If SELINUX is enabled  - switch off this: open /etc/selinux/config and change SE
 ### Stats page
 
 After installation you can access a stats page **without** authenticating via the URL: `http://<YourHAProxyServer>:9000/haproxy_stats`
+
+
+
+##
+[/usr/sbin/haproxy.main()] Cannot chroot1(/var/lib/haproxy)
+解决方法:
+创建/var/lib/haproxy目录
+
+
