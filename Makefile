@@ -4,7 +4,7 @@ LUA_VERSION=5.3.5
 USE_LUA?=0
 NO_SUDO?=0
 USE_PROMETHEUS?=0
-VERSION=$(shell wget -qO- http://git.haproxy.org/git/haproxy-${MAINVERSION}.git/refs/tags/ | sed -n 's:.*>\(.*\)</a>.*:\1:p' | sed 's/^.//' | sort -rV | head -1)
+VERSION=$(shell wget -qO- https://git.haproxy.org/git/haproxy-${MAINVERSION}.git/refs/tags/ | sed -n 's:.*>\(.*\)</a>.*:\1:p' | sed 's/^.//' | sort -rV | head -1)
 ifeq ("${VERSION}","./")
 		VERSION="${MAINVERSION}.0"
 endif
@@ -26,7 +26,7 @@ clean:
 	rm -rf ./lua-${LUA_VERSION}*
 
 download-upstream:
-	wget http://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -O ./SOURCES/haproxy-${VERSION}.tar.gz
+	wget https://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -O ./SOURCES/haproxy-${VERSION}.tar.gz
 
 build_lua:
 	sudo yum install -y readline-devel
@@ -63,3 +63,4 @@ build: $(build_stages)
 	--define "_srcrpmdir %{_topdir}/SRPMS" \
 	--define "_use_lua ${USE_LUA}" \
 	--define "_use_prometheus ${USE_PROMETHEUS}"
+
