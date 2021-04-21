@@ -79,7 +79,7 @@ After installation you can access a stats page **without** authenticating via th
 
 
 
-##
+## 常见问题
 [/usr/sbin/haproxy.main()] Cannot chroot1(/var/lib/haproxy)
 解决方法:
 创建/var/lib/haproxy目录
