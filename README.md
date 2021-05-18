@@ -1,5 +1,4 @@
-# RPM builder for HAProxy 2.4 (CentOS 7)
-May, 14th, 2021: HAProxy 2.4.0 released
+# RPM builder for HAProxy 2.3 (CentOS 7)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/philyuchkoff/HAProxy-2-RPM-builder?style=for-the-badge)
 ![GitHub All Releases](https://img.shields.io/github/downloads/philyuchkoff/HAProxy-2-RPM-builder/total?style=for-the-badge)
