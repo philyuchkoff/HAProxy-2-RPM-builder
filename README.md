@@ -47,11 +47,11 @@ Resulting RPM will be stored in
 
 ### Install:
 
-    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.4.2-1.el7.x86_64.rpm
+    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.4.4-1.el7.x86_64.rpm
 
 or, if you build *.rpm with Docker:
 
-    sudo yum -y install RPMS/haproxy-2.4.2-1.el7.x86_64.rpm 
+    sudo yum -y install RPMS/haproxy-2.4.4-1.el7.x86_64.rpm 
     
 
 ### Check after install:
@@ -60,7 +60,7 @@ or, if you build *.rpm with Docker:
 
 Must be like this:
 
-    HAProxy version 2.4.2-553dee3 2021/07/07
+    HAProxy version 2.4.4-acb1d0b 2021/09/07
     
 
 ### :exclamation: If some not working:
