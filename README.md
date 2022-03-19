@@ -1,4 +1,5 @@
 # RPM builder for HAProxy 2.5 (CentOS 7)
+## Build latest HAProxy binary with prometheus metrics support
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/philyuchkoff/HAProxy-2-RPM-builder?style=for-the-badge)
 ![GitHub All Releases](https://img.shields.io/github/downloads/philyuchkoff/HAProxy-2-RPM-builder/total?style=for-the-badge)
