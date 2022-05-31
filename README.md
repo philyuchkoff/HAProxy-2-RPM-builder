@@ -89,6 +89,6 @@ Create /var/lib/haproxy directory
 Check on the rpcbind service to ensure that this service is started 
 
 # Thanks to supporters!
-[![Stargazers repo roster for @philyuchkoff/openssl-RPM-Builder](https://reporoster.com/stars/philyuchkoff/openssl-RPM-Builder)](https://github.com/philyuchkoff/openssl-RPM-Builder/stargazers)
+[![Stargazers repo roster for @philyuchkoff/HAProxy-2-RPM-builder](https://reporoster.com/stars/philyuchkoff/HAProxy-2-RPM-builder)](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/stargazers)
 
-[![Forkers repo roster for @philyuchkoff/openssl-RPM-Builder](https://reporoster.com/forks/philyuchkoff/openssl-RPM-Builder)](https://github.com/philyuchkoff/openssl-RPM-Builder/network/members)
+[![Forkers repo roster for @philyuchkoff/HAProxy-2-RPM-builder](https://reporoster.com/forks/philyuchkoff/HAProxy-2-RPM-builder)](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/network/members)
