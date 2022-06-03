@@ -30,7 +30,7 @@ download-upstream:
 
 build_lua:
 	sudo yum install -y readline-devel
-	wget https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
+	wget --no-check-certificate https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
 	tar xzf lua-${LUA_VERSION}.tar.gz
 	cd lua-${LUA_VERSION}
 	$(MAKE) -C lua-${LUA_VERSION} clean
