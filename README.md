@@ -80,15 +80,15 @@ After installation you can access a stats page **without** authenticating via th
 
 
 
-## Common problem:
+### Common problem:
     [/usr/sbin/haproxy.main()] Cannot chroot1(/var/lib/haproxy)  
 
-### Solution:
+#### Solution:
 Create /var/lib/haproxy directory
 
 Check on the rpcbind service to ensure that this service is started 
 
 # Thanks to supporters!
-[![Stargazers repo roster for @philyuchkoff/HAProxy-2-RPM-builder](https://reporoster.com/stars/notext/philyuchkoff/HAProxy-2-RPM-builder)](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/stargazers)
+[![Stargazers repo roster for @philyuchkoff/HAProxy-2-RPM-builder](https://reporoster.com/stars/philyuchkoff/HAProxy-2-RPM-builder)](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/stargazers)
 
-[![Forkers repo roster for @philyuchkoff/HAProxy-2-RPM-builder](https://reporoster.com/forks/notext/philyuchkoff/HAProxy-2-RPM-builder)](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/network/members)
+[![Forkers repo roster for @philyuchkoff/HAProxy-2-RPM-builder](https://reporoster.com/forks/philyuchkoff/HAProxy-2-RPM-builder)](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/network/members)
