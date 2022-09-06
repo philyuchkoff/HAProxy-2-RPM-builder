@@ -5,7 +5,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/philyuchkoff/HAProxy-2-RPM-builder/total?style=for-the-badge)
 
 
-### [HAProxy](http://www.haproxy.org/) 2.6.4 2022/08/22
+### [HAProxy](http://www.haproxy.org/) 2.6.5 2022/09/03
 
 Perform the following steps on a build box as a regular user:
 
@@ -48,11 +48,11 @@ Resulting RPM will be stored in
 
 ### Install:
 
-    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.6.4-1.el7.x86_64.rpm
+    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.6.5-1.el7.x86_64.rpm
 
 or, if you build *.rpm with Docker:
 
-    sudo yum -y install RPMS/haproxy-2.6.4-1.el7.x86_64.rpm 
+    sudo yum -y install RPMS/haproxy-2.6.5-1.el7.x86_64.rpm 
     
 
 ### Check after install:
@@ -61,9 +61,9 @@ or, if you build *.rpm with Docker:
 
 Must be like this:
 
-    HAProxy version 2.6.4-2a2078c 2022/08/22 - https://haproxy.org/
+    HAProxy version 2.6.5-987a4e2 2022/09/03 - https://haproxy.org/
     Status: long-term supported branch - will stop receiving fixes around Q2 2027.
-    Known bugs: http://www.haproxy.org/bugs/bugs-2.6.4.html
+    Known bugs: http://www.haproxy.org/bugs/bugs-2.6.5.html
     
 
 ### :exclamation: If some not working:
