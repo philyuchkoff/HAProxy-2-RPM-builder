@@ -89,8 +89,3 @@ After installation you can access a stats page **without** authenticating via th
 Create `/var/lib/haproxy` directory
 
 Check on the rpcbind service to ensure that this service is started 
-
-# Thanks to supporters!
-[![Stargazers repo roster for @philyuchkoff/HAProxy-2-RPM-builder](https://reporoster.com/stars/philyuchkoff/HAProxy-2-RPM-builder)](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/stargazers)
-
-[![Forkers repo roster for @philyuchkoff/HAProxy-2-RPM-builder](https://reporoster.com/forks/philyuchkoff/HAProxy-2-RPM-builder)](https://github.com/philyuchkoff/HAProxy-2-RPM-builder/network/members)
