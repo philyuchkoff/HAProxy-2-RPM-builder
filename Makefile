@@ -29,7 +29,11 @@ download-upstream:
 	wget https://www.haproxy.org/download/${MAINVERSION}/src/haproxy-${VERSION}.tar.gz -O ./SOURCES/haproxy-${VERSION}.tar.gz
 
 build_lua:
+ifeq ($(NO_SUDO),1)
+	yum install -y readline-devel
+else
 	sudo yum install -y readline-devel
+endif
 	wget --no-check-certificate https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
 	tar xzf lua-${LUA_VERSION}.tar.gz
 	cd lua-${LUA_VERSION}
