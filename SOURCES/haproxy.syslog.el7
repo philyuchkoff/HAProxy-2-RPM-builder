@@ -6,6 +6,8 @@ $template HAProxy,"%TIMESTAMP% %syslogseverity-text:::UPPERCASE%: %msg:::drop-la
 $template HAProxyAccess,"%msg%\n"
 
 local2.=info if $programname startswith 'haproxy' then /var/log/haproxy/access.log;HAProxyAccess 
+& stop
 local2.emerg if $programname startswith 'haproxy' then /var/log/haproxy/error.log;HAProxy
+& stop
 local2.notice if $programname startswith 'haproxy' then /var/log/haproxy/status.log;HAProxy
-local2.* & stop
+& stop
