@@ -5,7 +5,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/philyuchkoff/HAProxy-2-RPM-builder/total?style=for-the-badge)
 
 
-### [HAProxy](http://www.haproxy.org/) 2.7.0 2022/12/01
+### [HAProxy](http://www.haproxy.org/) 2.7.1 2022/12/19
 
 Perform the following steps on a build box as a regular user:
 
