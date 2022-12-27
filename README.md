@@ -48,11 +48,11 @@ Resulting RPM will be stored in
 
 ### Install:
 
-    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.7.0-1.el7.x86_64.rpm
+    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.7.1-1.el7.x86_64.rpm
 
 or, if you build *.rpm with Docker:
 
-    sudo yum -y install RPMS/haproxy-2.7.0-1.el7.x86_64.rpm 
+    sudo yum -y install RPMS/haproxy-2.7.1-1.el7.x86_64.rpm 
     
 
 ### Check after install:
@@ -61,9 +61,9 @@ or, if you build *.rpm with Docker:
 
 Must be like this:
 
-    HAProxy version 2.7.0-437fd28 2022/12/01 - https://haproxy.org/
+    HAProxy version 2.7.1-3e4af0e 2022/12/19 - https://haproxy.org/
     Status: stable branch - will stop receiving fixes around Q1 2024.
-    Known bugs: http://www.haproxy.org/bugs/bugs-2.7.0.html
+    Known bugs: http://www.haproxy.org/bugs/bugs-2.7.1.html
     
 
 ### :exclamation: If some not working:
