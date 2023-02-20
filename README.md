@@ -7,13 +7,22 @@
 
 ### [HAProxy](http://www.haproxy.org/) 2.7.3 2023/21/14
 
-Perform the following steps on a build box as a regular user (for CentOS8 replase `yum` to `dnf`):
+Perform the following steps on a build box as a regular user:
 
+#### CentOS7
 
     sudo yum -y groupinstall 'Development Tools'
     cd /opt
     sudo git clone https://github.com/philyuchkoff/HAProxy-2-RPM-builder.git
     cd ./HAProxy-2-RPM-builder
+    
+#### CentOS8
+
+    sudo dnf -y groupinstall 'Development Tools'
+    cd /opt
+    sudo git clone https://github.com/philyuchkoff/HAProxy-2-RPM-builder.git
+    cd ./HAProxy-2-RPM-builder
+    sudo sed -i 's/yum/dnf/' Makefile
 
 ### Build:
 
@@ -46,7 +55,7 @@ Resulting RPM will be stored in
     ./RPMS/
 
 
-### Install:
+### Install (for CentOS8 replase `yum` to `dnf`):
 
     sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.7.3-1.el7.x86_64.rpm
 
