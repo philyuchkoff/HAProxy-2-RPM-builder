@@ -7,7 +7,7 @@
 
 ### [HAProxy](http://www.haproxy.org/) 2.7.3 2023/21/14
 
-Perform the following steps on a build box as a regular user (for CentOS8 replase `yum` to `dnf`:
+Perform the following steps on a build box as a regular user (for CentOS8 replase `yum` to `dnf`):
 
 
     sudo yum -y groupinstall 'Development Tools'
