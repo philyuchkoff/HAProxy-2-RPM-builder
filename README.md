@@ -83,8 +83,6 @@ After installation you can access a stats page **without** authenticating via th
 
 ### Common problem:
     [/usr/sbin/haproxy.main()] Cannot chroot1(/var/lib/haproxy)  
-
-#### Solution:
-Create `/var/lib/haproxy` directory
-
-Check on the rpcbind service to ensure that this service is started 
+##### Solution:
+- Create `/var/lib/haproxy` directory
+- Check on the rpcbind service to ensure that this service is started 
