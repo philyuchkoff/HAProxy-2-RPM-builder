@@ -5,7 +5,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/philyuchkoff/HAProxy-2-RPM-builder/total?style=for-the-badge)
 
 
-### [HAProxy](http://www.haproxy.org/) 2.7.3 2023/21/14
+### [HAProxy](http://www.haproxy.org/) 2.7.4 2023/03/10
 
 Perform the following steps on a build box as a regular user:
 
@@ -57,11 +57,11 @@ Resulting RPM will be stored in
 
 ### Install (for CentOS8 replase `yum` to `dnf`):
 
-    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.7.3-1.el7.x86_64.rpm
+    sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.7.4-1.el7.x86_64.rpm
 
 or, if you build *.rpm with Docker:
 
-    sudo yum -y install RPMS/haproxy-2.7.3-1.el7.x86_64.rpm 
+    sudo yum -y install RPMS/haproxy-2.7.4-1.el7.x86_64.rpm 
     
 
 ### Check after install:
