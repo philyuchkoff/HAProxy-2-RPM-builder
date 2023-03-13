@@ -55,7 +55,7 @@ Resulting RPM will be stored in
     ./RPMS/
 
 
-### Install (for CentOS8 replase `yum` to `dnf`):
+### Install (for CentOS8/9 replaсe `yum` to `dnf`):
 
     sudo yum -y install /opt/HAProxy-2-RPM-builder/rpmbuild/RPMS/x86_64/haproxy-2.7.4-1.el7.x86_64.rpm
 
@@ -67,12 +67,6 @@ or, if you build *.rpm with Docker:
 ### Check after install:
 
     haproxy -v
-
-Must be like this:
-
-    HAProxy version 2.7.3-1065b10 2023/02/14 - https://haproxy.org/
-    Status: stable branch - will stop receiving fixes around Q1 2024.
-    
 
 ### :exclamation: If some not working:
 
@@ -91,7 +85,15 @@ After installation you can access a stats page **without** authenticating via th
 
 
 ### Common problem:
+
+#### :exclamation: Cannot chroot1
     [/usr/sbin/haproxy.main()] Cannot chroot1(/var/lib/haproxy)  
 ##### Solution:
 - Create `/var/lib/haproxy` directory
 - Check on the rpcbind service to ensure that this service is started 
+
+#### :exclamation: Failed to download metadata for repo ‘AppStream’ (CentOS8/9)
+##### Solution:
+    cd /etc/yum.repos.d/
+    sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+    sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
