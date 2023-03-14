@@ -68,16 +68,6 @@ or, if you build *.rpm with Docker:
 
     haproxy -v
 
-### :exclamation: If some not working:
-
-Check SELINUX:
-
-    sestatus
-
-If SELINUX is enabled  - switch off this: open /etc/selinux/config and change SELINUX to disabled:
-
-    sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
-
 ### Stats page
 
 After installation you can access a stats page **without** authenticating via the URL: `http://<YourHAProxyServer>:9000/haproxy_stats`
@@ -86,13 +76,22 @@ After installation you can access a stats page **without** authenticating via th
 
 ### Common problem:
 
-#### :exclamation: Cannot chroot1
+#### :o: If some not working - check SELINUX:
+
+    sestatus
+
+If SELINUX is enabled  - switch off this: open /etc/selinux/config and change SELINUX to disabled:
+
+    sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
+
+
+#### :o: Cannot chroot1
     [/usr/sbin/haproxy.main()] Cannot chroot1(/var/lib/haproxy)  
 ##### Solution:
 - Create `/var/lib/haproxy` directory
 - Check on the rpcbind service to ensure that this service is started 
 
-#### :exclamation: Failed to download metadata for repo ‘AppStream’ (CentOS8/9)
+#### :o: Failed to download metadata for repo ‘AppStream’ (CentOS8/9)
 ##### Solution:
     cd /etc/yum.repos.d/
     sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
