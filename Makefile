@@ -68,7 +68,7 @@ build-docker:
 
 run-docker: build-docker
 	mkdir -p RPMS
-	docker run --volume $(HOME)/RPMS:/RPMS --rm haproxy-rpm-builder:latest
+	docker run -e USE_LUA=${USE_LUA} -e USE_PROMETHEUS=${USE_PROMETHEUS} -e RELEASE=${RELEASE} --volume $(HOME)/RPMS:/RPMS --rm haproxy-rpm-builder:latest
 
 build: $(build_stages)
 ifeq ($(NO_SUDO),1)
