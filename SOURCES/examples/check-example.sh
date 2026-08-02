@@ -44,7 +44,25 @@ check_one() {
     fi
 
     echo "== $(basename "$target")"
-    if "$HAPROXY" -c -f "$BASE" -f "$target"; then
+
+    # HAProxy 3.x는 문제가 없으면 아무 말도 하지 않습니다. 그대로 두면 통과인지
+    # 아직 안 돌았는지 구분이 안 되므로, 출력을 받아 두었다가 결과를 직접 알려
+    # 줍니다. 경고는 종료 코드 0이라 따로 찾아내야 합니다.
+    local out rc
+    out="$("$HAPROXY" -c -f "$BASE" -f "$target" 2>&1)"
+    rc=$?
+
+    [ -n "$out" ] && echo "$out"
+
+    if [ "$rc" -eq 0 ]; then
+        case "$out" in
+            *"Warnings were found"*)
+                echo "   통과 — 다만 위 경고는 확인해 보세요."
+                ;;
+            *)
+                echo "   통과 — 문법 이상 없음."
+                ;;
+        esac
         return 0
     fi
 
