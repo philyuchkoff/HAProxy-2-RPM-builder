@@ -87,7 +87,7 @@ sudo systemctl enable --now haproxy
 
 - **SSL/TLS** — OpenSSL 3.x 연동 (HTTPS 처리)
 - **압축** — zlib (gzip, deflate 응답 압축)
-- **정규식** — PCRE + JIT 가속
+- **정규식** — PCRE2 + JIT 가속
 - **멀티스레드** — 기본 64스레드, 최대 1024스레드
 - **투명 프록시**, **TCP Fast Open**, **네트워크 네임스페이스**
 - **ACME** — 인증서 자동 발급 (HAProxy 3.x 신규 기능)
@@ -142,7 +142,7 @@ ls -lh RPMS/
 
 ```bash
 sudo dnf groupinstall -y "Development Tools"
-sudo dnf install -y openssl-devel zlib-devel systemd-devel pcre-devel \
+sudo dnf install -y openssl-devel zlib-devel systemd-rpm-macros pcre2-devel \
                     rpm-build redhat-rpm-config wget
 ```
 
@@ -217,7 +217,7 @@ make run-docker USE_LUA=1 USE_PROMETHEUS=1
 sudo dnf install -y ./haproxy-3.4.3-1.el9.x86_64.rpm
 ```
 
-`dnf`는 필요한 라이브러리(OpenSSL, zlib, PCRE, rsyslog)를 알아서 함께 설치해 줍니다. 설치가 잘 됐는지 버전을 확인해 봅니다.
+`dnf`는 필요한 라이브러리(OpenSSL, zlib, PCRE2, rsyslog)를 알아서 함께 설치해 줍니다. 설치가 잘 됐는지 버전을 확인해 봅니다.
 
 ```bash
 haproxy -v

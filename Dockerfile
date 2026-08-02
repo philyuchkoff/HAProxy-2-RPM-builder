@@ -1,7 +1,7 @@
 FROM rockylinux:9
 
 RUN dnf groupinstall -y "Development Tools" \
- && dnf install -y openssl-devel zlib-devel systemd-devel pcre-devel \
+ && dnf install -y openssl-devel zlib-devel systemd-rpm-macros pcre2-devel \
                    rpm-build redhat-rpm-config make gcc wget tar which \
  && dnf clean all
 

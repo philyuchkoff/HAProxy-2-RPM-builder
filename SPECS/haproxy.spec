@@ -52,7 +52,9 @@ Source33: 13-maintenance.cfg
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
-BuildRequires: pcre-devel
+# PCRE2, not PCRE1: HAProxy 3 recommends it and PCRE1 has been end-of-life
+# upstream since 2020.
+BuildRequires: pcre2-devel
 BuildRequires: zlib-devel
 BuildRequires: make
 BuildRequires: gcc openssl-devel
@@ -68,8 +70,10 @@ Requires(postun):   initscripts
 %endif
 
 %if 0%{?el7} || 0%{?amzn2} || 0%{?el8} || 0%{?el9}
-BuildRequires:      systemd-units
-BuildRequires:      systemd-devel
+# Only the rpm macros (%%{_unitdir}, %%systemd_post, ...) are needed. HAProxy 3
+# implements sd_notify itself, so it no longer links against libsystemd and
+# systemd-devel has nothing left to contribute.
+BuildRequires:      systemd-rpm-macros
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
@@ -91,7 +95,9 @@ It needs very little resource. Its event-driven architecture allows it to easily
 handle thousands of simultaneous connections on hundreds of instances without
 risking the system's stability.
 
-https://github.com/philyuchkoff/HAProxy-2-RPM-builder
+# This spec started life in philyuchkoff's HAProxy-2-RPM-builder. That project
+# targets the 2.x series, which this package no longer builds, so the pointer
+# is kept here as attribution rather than in the user-visible description.
 
 %prep
 %setup -q
@@ -100,28 +106,18 @@ https://github.com/philyuchkoff/HAProxy-2-RPM-builder
 %define __perl_requires /bin/true
 
 %build
-regparm_opts=
-%ifarch %ix86 x86_64
-regparm_opts="USE_REGPARM=1"
-%endif
-
 RPM_BUILD_NCPUS="`/usr/bin/nproc 2>/dev/null || /usr/bin/getconf _NPROCESSORS_ONLN`";
 
-# Default opts
-systemd_opts=
-pcre_opts="USE_PCRE=1"
-USE_TFO=
-USE_NS=
-
-%if 0%{?el7} || 0%{?amzn2} || 0%{?el8} || 0%{?el9}
-systemd_opts="USE_SYSTEMD=1"
-pcre_opts="USE_PCRE=1 USE_PCRE_JIT=1"
-%endif
-
-%if 0%{?el7} || 0%{?amzn2} || 0%{?amzn1} || 0%{?el8} || 0%{?el9}
-USE_TFO=1
-USE_NS=1
-%endif
+# Three options this spec used to pass are gone from HAProxy 3, which reports
+# them as "ignoring unknown build option" and carries on:
+#   USE_REGPARM   dropped upstream; it only ever helped 32-bit x86.
+#   USE_SYSTEMD   sd_notify is built in now, with no libsystemd to link.
+#   CPU=generic   the CPU variable is no longer used; per-CPU tuning belongs
+#                 in CPU_CFLAGS.
+# USE_TFO and USE_NS are unconditional here because the linux-glibc target
+# enables both by default. The old per-distro branches left them empty on
+# anything unrecognised, which overrode that default and switched them off.
+pcre_opts="USE_PCRE2=1 USE_PCRE2_JIT=1"
 
 %if 0%{_use_lua}
 SET_LUA="USE_LUA=1"
@@ -131,7 +127,7 @@ SET_LUA="USE_LUA=1"
 SET_PROMETHEUS="USE_PROMEX=1"
 %endif
 
-%{__make} -j$RPM_BUILD_NCPUS %{?_smp_mflags} CPU="generic" TARGET="linux-glibc" ${systemd_opts} ${pcre_opts} USE_OPENSSL=1 USE_ZLIB=1 ${regparm_opts} ADDINC="%{optflags}" USE_LINUX_TPROXY=1 USE_THREAD=1 USE_TFO=${USE_TFO} USE_NS=${USE_NS} ${SET_LUA} ${SET_PROMETHEUS} ADDLIB="%{__global_ldflags}"
+%{__make} -j$RPM_BUILD_NCPUS %{?_smp_mflags} TARGET="linux-glibc" ${pcre_opts} USE_OPENSSL=1 USE_ZLIB=1 ADDINC="%{optflags}" USE_LINUX_TPROXY=1 USE_THREAD=1 USE_TFO=1 USE_NS=1 ${SET_LUA} ${SET_PROMETHEUS} ADDLIB="%{__global_ldflags}"
 
 %{__make} admin/halog/halog OPTIMIZE="%{optflags} %{__global_ldflags}"
 
