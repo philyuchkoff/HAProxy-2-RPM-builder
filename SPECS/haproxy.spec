@@ -107,7 +107,7 @@ SET_LUA="USE_LUA=1"
 %endif
 
 %if 0%{_use_prometheus}
-SET_PROMETHEUS="EXTRA_OBJS=addons/promex/service-prometheus.o"
+SET_PROMETHEUS="USE_PROMEX=1"
 %endif
 
 %{__make} -j$RPM_BUILD_NCPUS %{?_smp_mflags} CPU="generic" TARGET="linux-glibc" ${systemd_opts} ${pcre_opts} USE_OPENSSL=1 USE_ZLIB=1 ${regparm_opts} ADDINC="%{optflags}" USE_LINUX_TPROXY=1 USE_THREAD=1 USE_TFO=${USE_TFO} USE_NS=${USE_NS} ${SET_LUA} ${SET_PROMETHEUS} ADDLIB="%{__global_ldflags}"
@@ -129,6 +129,7 @@ popd
 %{__install} -d %{buildroot}%{_sysconfdir}/logrotate.d
 %{__install} -d %{buildroot}%{_sysconfdir}/rsyslog.d
 %{__install} -d %{buildroot}%{_localstatedir}/log/%{name}
+%{__install} -d %{buildroot}%{haproxy_home}
 
 %{__install} -s %{name} %{buildroot}%{_sbindir}/
 
@@ -212,6 +213,7 @@ fi
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/%{name}/%{name}.cfg
 %attr(0755,root,root) %{_sbindir}/%{name}
 %dir %{_localstatedir}/log/%{name}
+%dir %attr(0755,%{haproxy_user},%{haproxy_group}) %{haproxy_home}
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/rsyslog.d/49-%{name}.conf
 %{_bindir}/halog
