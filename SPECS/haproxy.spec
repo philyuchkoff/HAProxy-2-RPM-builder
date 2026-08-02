@@ -29,6 +29,27 @@ Source2: %{name}.service
 Source3: %{name}.logrotate
 Source4: %{name}.syslog%{?dist}
 Source5: halog.1
+
+# Ready-to-use config recipes, one file per README example. They ship under
+# /usr/share/haproxy rather than as %%doc so `rpm --excludedocs` can't strip
+# them: they are templates users copy from, not reading material.
+Source10: README.txt
+Source11: check-example.sh
+Source20: 00-base.cfg
+Source21: 01-web-http-lb.cfg
+Source22: 02-real-client-ip.cfg
+Source23: 03-https-offload.cfg
+Source24: 04-http2.cfg
+Source25: 05-routing-acl.cfg
+Source26: 06-sticky-session.cfg
+Source27: 07-mysql.cfg
+Source28: 08-mysql-rw-split.cfg
+Source29: 09-postgresql.cfg
+Source30: 10-redis.cfg
+Source31: 11-tcp-passthrough.cfg
+Source32: 12-rate-limit.cfg
+Source33: 13-maintenance.cfg
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 BuildRequires: pcre-devel
@@ -130,6 +151,7 @@ popd
 %{__install} -d %{buildroot}%{_sysconfdir}/rsyslog.d
 %{__install} -d %{buildroot}%{_localstatedir}/log/%{name}
 %{__install} -d %{buildroot}%{haproxy_home}
+%{__install} -d %{buildroot}%{_datadir}/%{name}/examples
 
 %{__install} -s %{name} %{buildroot}%{_sbindir}/
 
@@ -139,6 +161,24 @@ popd
 %{__install} -c -m 644 doc/%{name}.1 %{buildroot}%{_mandir}/man1/
 %{__install} -c -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/rsyslog.d/49-%{name}.conf
 %{__install} -c -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
+
+%define example_dir %{buildroot}%{_datadir}/%{name}/examples
+%{__install} -c -m 644 %{SOURCE10} %{example_dir}/README.txt
+%{__install} -c -m 755 %{SOURCE11} %{example_dir}/check-example.sh
+%{__install} -c -m 644 %{SOURCE20} %{example_dir}/00-base.cfg
+%{__install} -c -m 644 %{SOURCE21} %{example_dir}/01-web-http-lb.cfg
+%{__install} -c -m 644 %{SOURCE22} %{example_dir}/02-real-client-ip.cfg
+%{__install} -c -m 644 %{SOURCE23} %{example_dir}/03-https-offload.cfg
+%{__install} -c -m 644 %{SOURCE24} %{example_dir}/04-http2.cfg
+%{__install} -c -m 644 %{SOURCE25} %{example_dir}/05-routing-acl.cfg
+%{__install} -c -m 644 %{SOURCE26} %{example_dir}/06-sticky-session.cfg
+%{__install} -c -m 644 %{SOURCE27} %{example_dir}/07-mysql.cfg
+%{__install} -c -m 644 %{SOURCE28} %{example_dir}/08-mysql-rw-split.cfg
+%{__install} -c -m 644 %{SOURCE29} %{example_dir}/09-postgresql.cfg
+%{__install} -c -m 644 %{SOURCE30} %{example_dir}/10-redis.cfg
+%{__install} -c -m 644 %{SOURCE31} %{example_dir}/11-tcp-passthrough.cfg
+%{__install} -c -m 644 %{SOURCE32} %{example_dir}/12-rate-limit.cfg
+%{__install} -c -m 644 %{SOURCE33} %{example_dir}/13-maintenance.cfg
 
 %{__install} -p -m 0755 ./admin/halog/halog %{buildroot}%{_bindir}/halog
 %{__install} -p -m 0755 ./admin/iprange/iprange %{buildroot}%{_bindir}/iprange
@@ -212,6 +252,10 @@ fi
 %{_sysconfdir}/%{name}/errors
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/%{name}/%{name}.cfg
 %attr(0755,root,root) %{_sbindir}/%{name}
+# Config recipes. Deliberately not %config: they are pristine templates, so an
+# upgrade should always replace them with the current versions.
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/examples
 %dir %{_localstatedir}/log/%{name}
 %dir %attr(0755,%{haproxy_user},%{haproxy_group}) %{haproxy_home}
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}

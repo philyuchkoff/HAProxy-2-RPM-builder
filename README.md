@@ -72,6 +72,7 @@ sudo systemctl enable --now haproxy
 | `/usr/sbin/haproxy` | HAProxy 실행 파일 |
 | `/etc/haproxy/haproxy.cfg` | **가장 중요한 설정 파일.** 대부분의 작업은 여기서 합니다. |
 | `/etc/haproxy/errors/` | 오류 응답 HTML (400, 403, 500, 502, 503, 504 등) |
+| `/usr/share/haproxy/examples/` | **설정 예제 파일 모음.** 아래 [설정 예제 모음](#설정-예제-모음)의 내용이 그대로 파일로 들어 있습니다 |
 | `/usr/lib/systemd/system/haproxy.service` | systemd 서비스 정의 |
 | `/etc/rsyslog.d/49-haproxy.conf` | 로그를 파일로 떨구는 rsyslog 규칙 |
 | `/etc/logrotate.d/haproxy` | 로그 자동 정리 규칙 (매일, 14일 보관) |
@@ -408,6 +409,42 @@ sudo haproxy -c -f /etc/haproxy/haproxy.cfg && sudo systemctl reload haproxy
 
 > 이 문서의 모든 예제는 HAProxy 3.4.3에서 문법 검사(`haproxy -c`)를 **경고 없이** 통과하는 것을 확인했습니다. 웹·라우팅·세션 고정·HTTPS·TCP·속도 제한 예제는 실제 백엔드를 붙여 동작까지 검증했습니다.
 
+### 예제는 파일로도 설치됩니다
+
+아래 예제들은 패키지에 **파일로 함께 들어 있습니다.** 문서를 보며 옮겨 적을 필요 없이 `/usr/share/haproxy/examples/`에서 바로 꺼내 쓰면 됩니다. 각 파일 맨 위 주석에 무엇을 준비해야 하고 어떤 값을 고쳐야 하는지가 적혀 있습니다.
+
+```bash
+ls /usr/share/haproxy/examples/
+cat /usr/share/haproxy/examples/README.txt      # 전체 목록과 사용법
+```
+
+| 파일 | 아래 예제 |
+|---|---|
+| `01-web-http-lb.cfg` | [1. 웹 서버 부하 분산](#1-웹-서버-부하-분산-http) |
+| `02-real-client-ip.cfg` | [2. 진짜 접속자 IP 알려주기](#2-백엔드에-진짜-접속자-ip-알려주기) |
+| `03-https-offload.cfg` | [3. HTTPS 처리 (SSL 종료)](#3-https-처리-ssl-종료) |
+| `04-http2.cfg` | [4. HTTP/2 사용하기](#4-http2-사용하기) |
+| `05-routing-acl.cfg` | [5. 경로·도메인별 라우팅](#5-경로도메인별로-다른-서버에-보내기) |
+| `06-sticky-session.cfg` | [6. 세션 고정](#6-세션-고정-sticky-session) |
+| `07-mysql.cfg` | [7. MySQL / MariaDB](#mysql--mariadb) |
+| `08-mysql-rw-split.cfg` | [7. MySQL 쓰기·읽기 분리](#mysql--mariadb) |
+| `09-postgresql.cfg` | [7. PostgreSQL](#postgresql) |
+| `10-redis.cfg` | [7. Redis](#redis) |
+| `11-tcp-passthrough.cfg` | [8. 일반 TCP 서비스 중계](#8-일반-tcp-서비스-중계) |
+| `12-rate-limit.cfg` | [9. 접속 제한과 속도 제한](#9-접속-제한과-속도-제한) |
+| `13-maintenance.cfg` | [10. 서버 점검 처리](#10-서버-점검maintenance-처리) |
+
+**붙여 넣기 전에 예제만 따로 검사해 볼 수도 있습니다.** 예제 파일에는 `frontend`/`backend`/`listen` 블록만 들어 있어(그래야 통째로 복사할 수 있으니까요) 그대로는 검사할 수 없는데, 같은 디렉터리의 `00-base.cfg`가 `global`/`defaults` 자리를 채워 줍니다. 도우미 스크립트가 이걸 대신 해 줍니다.
+
+```bash
+/usr/share/haproxy/examples/check-example.sh 01-web-http-lb.cfg   # 하나만
+/usr/share/haproxy/examples/check-example.sh --all                # 전부
+```
+
+> `03`·`04`번은 인증서 파일이 실제로 있어야 검사를 통과합니다. 만드는 방법은 [3번 예제](#3-https-처리-ssl-종료)와 해당 파일 주석에 있습니다.
+>
+> 이 디렉터리의 파일은 패키지를 업그레이드하면 최신 내용으로 교체됩니다. 고쳐 쓸 내용은 `/etc/haproxy/haproxy.cfg`에 옮겨 두세요.
+
 ### 예제를 적용하는 공통 절차
 
 어떤 예제든 적용 방법은 똑같습니다. 이 세 단계를 습관으로 만드세요.
@@ -419,6 +456,15 @@ sudo haproxy -c -f /etc/haproxy/haproxy.cfg && sudo systemctl reload haproxy   #
 ```
 
 3단계에서 `&&`로 이어 둔 것이 중요합니다. 문법 검사가 실패하면 리로드가 아예 실행되지 않으므로, 잘못된 설정이 서비스에 반영되는 사고를 막아 줍니다.
+
+설치된 예제 파일을 쓴다면 2단계에서 직접 옮겨 적는 대신 파일을 이어 붙이면 됩니다.
+
+```bash
+sudo sh -c 'cat /usr/share/haproxy/examples/01-web-http-lb.cfg >> /etc/haproxy/haproxy.cfg'
+sudo vi /etc/haproxy/haproxy.cfg   # IP·포트만 수정
+```
+
+**예제를 여러 개 붙여 넣을 때는 이름과 포트가 겹치지 않는지 확인하세요.** 여러 예제가 `frontend web` / `backend web_servers`라는 같은 이름과 `:80` 포트를 쓰고 있습니다. 겹치면 HAProxy가 시작되지 않습니다. 또 `defaults`는 자기 뒤에 나오는 섹션에만 적용되므로 예제는 항상 파일 **끝**에 붙여야 합니다.
 
 ### 부하 분산 알고리즘 고르기
 

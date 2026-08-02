@@ -76,6 +76,9 @@ build: $(build_stages)
 ifeq ($(NO_SUDO),1)
 	cp -r ./SPECS/* ./rpmbuild/SPECS/ || true
 	cp -r ./SOURCES/* ./rpmbuild/SOURCES/ || true
+	# rpm looks up every SourceN: by basename, so the config examples have to
+	# sit directly in SOURCES -- the examples/ subdirectory alone is invisible.
+	cp ./SOURCES/examples/* ./rpmbuild/SOURCES/
 	rpmbuild -ba SPECS/haproxy.spec \
 	--define "mainversion ${MAINVERSION}" \
 	--define "version ${VERSION}" \
@@ -90,6 +93,9 @@ ifeq ($(NO_SUDO),1)
 else
 	sudo cp -r ./SPECS/* ./rpmbuild/SPECS/ || true
 	sudo cp -r ./SOURCES/* ./rpmbuild/SOURCES/ || true
+	# rpm looks up every SourceN: by basename, so the config examples have to
+	# sit directly in SOURCES -- the examples/ subdirectory alone is invisible.
+	sudo cp ./SOURCES/examples/* ./rpmbuild/SOURCES/
 	sudo rpmbuild -ba SPECS/haproxy.spec \
 	--define "mainversion ${MAINVERSION}" \
 	--define "version ${VERSION}" \
