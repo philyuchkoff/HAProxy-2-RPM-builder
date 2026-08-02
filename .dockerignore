@@ -1,0 +1,4 @@
+.git
+rpmbuild
+RPMS
+SOURCES/haproxy-*.tar.gz

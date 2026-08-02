@@ -1,5 +1,15 @@
 FROM rockylinux:9
 
-RUN dnf install -y openssl-devel zlib-devel systemd-devel wget  pcre-devel
-RUN dnf groupinstall -y "Development Tools"
-RUN make TARGET=linux-glibc USE_LTO=1 LDFLAGS="-flto=auto"
+RUN dnf groupinstall -y "Development Tools" \
+ && dnf install -y openssl-devel zlib-devel systemd-devel pcre-devel \
+                   rpm-build redhat-rpm-config make gcc wget tar which \
+ && dnf clean all
+
+WORKDIR /build
+COPY . /build
+
+ENV USE_LUA=0 \
+    USE_PROMETHEUS=0 \
+    RELEASE=1
+
+ENTRYPOINT ["/build/build.sh"]

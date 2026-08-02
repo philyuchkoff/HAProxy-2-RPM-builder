@@ -1,6 +1,14 @@
-#!/bin/bash 
+#!/bin/bash
+set -euo pipefail
 
-dnf install -y openssl-devel zlib-devel systemd-devel wget  pcre-devel
-dnf groupinstall -y "Development Tools"
 cd /build
-make TARGET=linux-glibc USE_LTO=1 LDFLAGS="-flto=auto"
+
+make NO_SUDO=1 \
+     USE_LUA="${USE_LUA:-0}" \
+     USE_PROMETHEUS="${USE_PROMETHEUS:-0}" \
+     RELEASE="${RELEASE:-1}"
+
+# Hand the built packages back to the host through the /RPMS bind mount
+if [ -d /RPMS ]; then
+    find ./rpmbuild/RPMS ./rpmbuild/SRPMS -name '*.rpm' -exec cp -v {} /RPMS/ \;
+fi
